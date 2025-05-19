@@ -1,0 +1,15 @@
+# ignore processed data folder
+data_example/mimic_processed_data/
+
+# ignore specific Postgres result CSVs
+Postgres/results/Patient_Diagnoses_Pull.csv
+Postgres/results/Patient_Master_Info.csv
+Postgres/results/Patient_Matrix_Pull_Prescriptions_Patient_Type.csv
+
+# ignore all of your Analysis folder
+Analysis/
+
+# ignore these files/directories entirely
+__pycache__/
+venv/
+.DS_Store
