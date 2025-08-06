@@ -5,9 +5,18 @@ data_example/mimic_processed_data/
 Postgres/results/Patient_Diagnoses_Pull.csv
 Postgres/results/Patient_Master_Info.csv
 Postgres/results/Patient_Matrix_Pull_Prescriptions_Patient_Type.csv
+Postgres/results/Patient_Master_Table.csv
 
-# ignore all of your Analysis folder
+# ignore Analysis folder
 Analysis/
+
+#ignore processed data for now
+data_example/All_Patients.csv
+data_example/cohort_test-ehrseq.csv
+data_example/cohort_ehrseq.csv
+data_example/cohort-vocab.csv
+data_example/encodings
+data_example/mimic_processed_data
 
 # ignore these files/directories entirely
 __pycache__/
