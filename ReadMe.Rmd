@@ -1,0 +1,108 @@
+---
+title: "Master's Thesis Code Sample"
+author: "Michael Ficca"
+last update: "8/6/2025"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+Prescription Processing Pipeline: CONVAE Testing a Novel Deep Learning Algorithm for ICU Patient Clustering
+===============================================================================
+
+This repository demonstrates the R code and Python code used in my Master’s thesis project titled:
+**CONVAE: Testing a Novel Deep Learning Algorithm for ICU Patient Clustering** — testing unsupervised representations of longitudinal health data for risk stratification.
+
+In this work, I leveraged MIMIC prescription data to validate a deep-learning framework, including convolutional neural networks and an autoencoder that generates sequential patient embeddings and clusters them. The findings confirmed the model’s ability to capture temporal patterns in medication histories for effective risk stratification.
+
+Mimic-III data has not been included in the publication of this repo, but sample data has been made available to run to see how the repo works.
+
+## Repository Structure
+
+- **Postgres**
+  - SQL scripts and raw CSVs exported from the MIMIC database pulls (unprocessed data).
+
+- **Processing**
+  - **R/**: R scripts for cleaning and preprocessing prescription data.
+  - **python/**: Python scripts (pandas) implementing the same preprocessing pipeline.
+
+- **R_Global_Script**
+  - `setup.R`: installs and loads all required R packages (`tidyr`, `dplyr`, `janitor`, `here`, `rstudioapi`, etc.).
+
+- **CONVAE Architecture**
+  - `evaluate.py`        — evaluation routines for the trained autoencoder.
+  - `patient_representations.py` — main module to generate and save patient embeddings.
+  - `train.py`           — training loop for the CONVAE model.
+  - `utils.py`           — helper functions (data loaders, metrics, etc.).
+  - **data_example/**    — example input/output files for reproducibility.
+  - **model/**           — saved model artifacts and checkpoints.
+  
+- **UMAP**
+  - `umap_cluster_analysis.py` — script for clustering assignment and projection of embeddings
+  
+- **Descriptive_Statistics_Clusters**
+  - scripts for the comparison of demographics and mortality across clusters and the distributions of diagnoses and prescriptions
+
+
+## Executing code
+
+#### Prescription Data Processing Script
+
+This script processes patient prescription data and outputs sequences formatted for downstream use in the ConvAE pipeline. Code samples are available in both python (preferred) and R.
+
+---
+
+###### Input Options
+
+The script reads in prescription data from:
+
+- `Postgres/results/Patient_Matrix_Pull_Prescriptions_Patient_Type.csv` (default, not pushed)
+- `Postgres/results/sample_data.csv` (if `--sample-data` flag is set)
+
+---
+
+###### Output
+
+Outputs will be saved to:
+
+- `Processing/outputs/python/` (default)  
+- `data_example/` (if `--data-example` flag is set)
+
+The script generates the following files:
+
+- `All_Patients.csv`: all patients and sequences
+- `cohort-ehrseq.csv`: training set (5/6 split)
+- `cohort_test-ehrseq.csv`: test set (1/6 split)
+- `cohort-vocab.csv`: vocabulary mapping of drug codes
+
+---
+
+###### Running the Processing Data in python 
+
+Ensure your virtual environment is activated, then run:
+
+```bash
+python Processing/Python/python_prescription_code_processing.py
+```
+
+You can customize the run using these optional flags:
+
+| Option           | Description                                                        |
+|------------------|--------------------------------------------------------------------|
+| `--data-example` | Write outputs to `data_example/` instead of default output          |
+| `--sample-data`  | Use `sample_data.csv` instead of the real data file                |
+
+**Examples**:
+
+- Use sample data and write to `data_example/`:
+
+  ```bash
+  python Processing/Python/python_prescription_code_processing.py --data-example --sample-data
+  ```
+
+- Use real data and write to default directory:
+
+  ```bash
+  python Processing/Python/python_prescription_code_processing.py
+  ```
