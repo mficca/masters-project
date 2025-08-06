@@ -2,3 +2,6 @@ torch
 numpy
 gensim
 pandas
+umap-learn
+matplotlib
+scikit-learn
