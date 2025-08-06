@@ -6,7 +6,7 @@ Postgres/results/Patient_Diagnoses_Pull.csv
 Postgres/results/Patient_Master_Info.csv
 Postgres/results/Patient_Matrix_Pull_Prescriptions_Patient_Type.csv
 Postgres/results/Patient_Master_Table.csv
-UMAP/output/conve-avg_vect_cleaned.csv
+UMAP/output/convae-avg_vect_cleaned.csv
 
 # ignore Analysis folder
 Analysis/
