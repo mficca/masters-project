@@ -22,3 +22,5 @@ data_example/mimic_processed_data
 __pycache__/
 venv/
 .DS_Store
+.RData
+.Rhistory
